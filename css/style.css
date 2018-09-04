@@ -34,20 +34,17 @@ body {
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     transform-origin: top left;
     display: block;
+
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
 }
 
 .bouncy-list:hover {
     -webkit-transform: scale3d(2, 2, 2);
     transform: scale3d(2, 2, 2);
-    margin-bottom: 50px;
-    cursor: pointer;
-    color: var(--blu);
-}
-
-.bouncy-list-stick {
-    -webkit-transform: scale3d(2, 2, 2);
-    transform: scale3d(2, 2, 2);
-    display: block;
     margin-bottom: 50px;
     cursor: pointer;
     color: var(--blu);
