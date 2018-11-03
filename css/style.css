@@ -7,6 +7,8 @@
     --blu: #598381;
     --grey_black: #424B54;
 
+    --underline_main: #E87A4C;
+
     /*Flashing colors*/
     --off_white_f: #F7F5FF;
     --subtle_grey_f: #E2E1CC;
@@ -187,6 +189,7 @@ body {
 }
 
 .underline {
+    -webkit-text-decoration-color: var(--underline_main);
     text-decoration: underline;
     text-decoration-color: var(--peach);
 }
