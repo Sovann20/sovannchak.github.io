@@ -5,14 +5,20 @@
     const b01 = document.getElementById('b01');
     const b02 = document.getElementById('b02');
     const b03 = document.getElementById('b03');
-
+    const b04 = document.getElementById('b04');
 
     const c00 = document.getElementById('c00');
     const c01 = document.getElementById('c01');
     const c02 = document.getElementById('c02');
     const c03 = document.getElementById('c03');
+    const c04 = document.getElementById('c04');
 
     const resume_button = document.getElementById('show-resume');
+
+    const p01 = document.getElementById('proj-but1');
+    const p02 = document.getElementById('proj-but2');
+    const p03 = document.getElementById('proj-but3');
+
     const x_resume = document.getElementById('x-button');
 
     x_resume.addEventListener('mousedown', function () {
@@ -32,6 +38,30 @@
         resume_toggle();
     });
 
+    p01.addEventListener('click', function () {
+        proj('proj-card1', '1');
+    });
+
+    p02.addEventListener('click', function () {
+        proj('proj-card2', '2');
+    });
+
+    p03.addEventListener('click', function () {
+        proj('proj-card3', '3');
+    });
+
+    // p01.addEventListener('mouseover', function () {
+    //     proj('proj-card1');
+    // });
+    //
+    // p02.addEventListener('mouseover', function () {
+    //     proj('proj-card2');
+    // });
+    //
+    // p03.addEventListener('mouseover', function () {
+    //     proj('proj-card3');
+    // });
+
     b00.addEventListener('click', function () {
         show_or_hide(c00);
     });
@@ -47,6 +77,11 @@
     b03.addEventListener('click', function () {
         show_or_hide(c03);
     });
+    
+    b04.addEventListener('click', function () {
+        show_or_hide(c04);
+    });
+
 
     type_msg("Hello, I'm ", 'intro', function () {
         type_msg("Sovann", 'name', function () {
@@ -85,8 +120,25 @@ function resume_toggle() {
         content[i].classList.toggle('content-width-resume');
     }
 
-    resume.classList.toggle('right-hidden');
+    resume.classList.toggle('right-resume-hidden');
     resume.classList.toggle('resume-active');
+}
+
+function proj(proj_, str) {
+
+    const proj = document.getElementById(proj_);
+    const content = document.getElementsByClassName('content');
+
+
+    for( var i = 0; i < content.length; ++i ) {
+        content[i].classList.toggle('content-width-no-resume');
+        content[i].classList.toggle('content-width-resume');
+    }
+
+
+    proj.classList.toggle('right-hidden'+str);
+    proj.classList.toggle('resume-active');
+
 }
 
 function show_or_hide(content) {
