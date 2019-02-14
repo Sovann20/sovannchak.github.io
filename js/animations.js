@@ -36,6 +36,9 @@
 
     resume_button.addEventListener('click', function () {
         resume_toggle();
+        document.getElementById('proj-card2').style.zIndex = '2';
+        document.getElementById('proj-card1').style.zIndex = '3';
+        document.getElementById('proj-card3').style.zIndex = '1';
     });
 
     p01.addEventListener('click', function () {
@@ -44,23 +47,18 @@
 
     p02.addEventListener('click', function () {
         proj('proj-card2', '2');
+        document.getElementById('proj-card2').style.zIndex = '2';
+        document.getElementById('proj-card1').style.zIndex = '3';
+        document.getElementById('proj-card3').style.zIndex = '1';
+
     });
 
     p03.addEventListener('click', function () {
         proj('proj-card3', '3');
+        document.getElementById('proj-card2').style.zIndex = '2';
+        document.getElementById('proj-card1').style.zIndex = '3';
+        document.getElementById('proj-card3').style.zIndex = '1';
     });
-
-    // p01.addEventListener('mouseover', function () {
-    //     proj('proj-card1');
-    // });
-    //
-    // p02.addEventListener('mouseover', function () {
-    //     proj('proj-card2');
-    // });
-    //
-    // p03.addEventListener('mouseover', function () {
-    //     proj('proj-card3');
-    // });
 
     b00.addEventListener('click', function () {
         show_or_hide(c00);

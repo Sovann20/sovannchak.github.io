@@ -77,6 +77,10 @@ body {
     padding: 5%;
 }
 
+.container-spaced-resume {
+    padding: 5% 5% 5% 2%;
+}
+
 .content {
     font-size: medium;
     padding: 0 0 15px 4%;
@@ -249,17 +253,17 @@ body {
 }
 
 .right-resume-hidden {
-     right: -42%;
+     right: -46%;
  }
 
 .right-hidden1 {
-    right: -48%;
+    right: -49%;
 }
 .right-hidden2 {
-    right: -46%;
+    right: -48%;
 }
 .right-hidden3 {
-    right: -44%;
+    right: -47%;
 }
 
 .underline {
