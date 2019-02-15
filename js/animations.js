@@ -131,7 +131,7 @@
     
     b04.addEventListener('click', function () {
         show_or_hide(c04);
-    });8
+    });
 
 
     type_msg("Hello, I'm ", 'intro', function () {
