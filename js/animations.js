@@ -19,7 +19,70 @@
     const p02 = document.getElementById('proj-but2');
     const p03 = document.getElementById('proj-but3');
 
+    const cards = ["resume", "proj-card1", "proj-card2", "proj-card3"];
+
+    const resume_cardpull = document.getElementById('resume');
+    const pull1 = document.getElementById('proj-card1');
+    const pull2 = document.getElementById('proj-card2');
+    const pull3 = document.getElementById('proj-card3');
+
     const x_resume = document.getElementById('x-button');
+
+    resume_cardpull.addEventListener('mouseover', function () {
+        if(!resume_cardpull.classList.contains('resume-active') &&
+            !resume_cardpull.classList.contains('res-pullout')) {
+            resume_cardpull.classList.toggle('res-pullout');
+        }
+    });
+
+    resume_cardpull.addEventListener('mouseout', function () {
+        if(!resume_cardpull.classList.contains('resume-active') &&
+            resume_cardpull.classList.contains('res-pullout')) {
+            resume_cardpull.classList.toggle('res-pullout');
+        }
+    });
+
+    pull1.addEventListener('mouseout', function () {
+        if(!pull1.classList.contains('resume-active') &&
+            pull1.classList.contains('card1-pullout')) {
+            pull1.classList.toggle('card1-pullout');
+        }
+    });
+
+    pull1.addEventListener('mouseover', function () {
+        if(!pull1.classList.contains('resume-active') &&
+            !pull1.classList.contains('card1-pullout')) {
+            pull1.classList.toggle('card1-pullout');
+        }
+    });
+
+    pull2.addEventListener('mouseout', function () {
+        if(!pull2.classList.contains('resume-active') &&
+            pull2.classList.contains('card2-pullout')) {
+            pull2.classList.toggle('card2-pullout');
+        }
+    });
+
+    pull2.addEventListener('mouseover', function () {
+        if(!pull2.classList.contains('resume-active') &&
+            !pull2.classList.contains('card2-pullout')) {
+            pull2.classList.toggle('card2-pullout');
+        }
+    });
+
+    pull3.addEventListener('mouseover', function () {
+        if(!pull3.classList.contains('resume-active') &&
+            !pull3.classList.contains('card3-pullout')) {
+            pull3.classList.toggle('card3-pullout');
+        }
+    });
+
+    pull3.addEventListener('mouseout', function () {
+        if(!pull3.classList.contains('resume-active') &&
+            pull3.classList.contains('card3-pullout')) {
+            pull3.classList.toggle('card3-pullout');
+        }
+    });
 
     x_resume.addEventListener('mousedown', function () {
         x_resume.style.color = 'var(--peach)';
@@ -31,33 +94,23 @@
 
 
     x_resume.addEventListener('click', function () {
-        resume_toggle();
+        proj('resume', '0', cards);
     });
 
     resume_button.addEventListener('click', function () {
-        resume_toggle();
-        document.getElementById('proj-card2').style.zIndex = '2';
-        document.getElementById('proj-card1').style.zIndex = '3';
-        document.getElementById('proj-card3').style.zIndex = '1';
+        proj('resume', '0', cards);
     });
 
     p01.addEventListener('click', function () {
-        proj('proj-card1', '1');
+        proj('proj-card1', '1', cards);
     });
 
     p02.addEventListener('click', function () {
-        proj('proj-card2', '2');
-        document.getElementById('proj-card2').style.zIndex = '2';
-        document.getElementById('proj-card1').style.zIndex = '3';
-        document.getElementById('proj-card3').style.zIndex = '1';
-
+        proj('proj-card2', '2', cards);
     });
 
     p03.addEventListener('click', function () {
-        proj('proj-card3', '3');
-        document.getElementById('proj-card2').style.zIndex = '2';
-        document.getElementById('proj-card1').style.zIndex = '3';
-        document.getElementById('proj-card3').style.zIndex = '1';
+        proj('proj-card3', '3', cards);
     });
 
     b00.addEventListener('click', function () {
@@ -78,7 +131,7 @@
     
     b04.addEventListener('click', function () {
         show_or_hide(c04);
-    });
+    });8
 
 
     type_msg("Hello, I'm ", 'intro', function () {
@@ -107,36 +160,34 @@
     }, 800);
 })();
 
-function resume_toggle() {
 
-    const resume = document.getElementById('resume');
-    const content = document.getElementsByClassName('content');
-
-
-    for( var i = 0; i < content.length; ++i ) {
-        content[i].classList.toggle('content-width-no-resume');
-        content[i].classList.toggle('content-width-resume');
-    }
-
-    resume.classList.toggle('right-resume-hidden');
-    resume.classList.toggle('resume-active');
-}
-
-function proj(proj_, str) {
+function proj(proj_, str, cards) {
 
     const proj = document.getElementById(proj_);
     const content = document.getElementsByClassName('content');
+    var active_beginning = proj.classList.contains('resume-active');
 
+    for( var i = 0; i < cards.length; ++i ) {
 
-    for( var i = 0; i < content.length; ++i ) {
-        content[i].classList.toggle('content-width-no-resume');
-        content[i].classList.toggle('content-width-resume');
+        if(cards[i] !== proj_ && document.getElementById(cards[i]).classList.contains('resume-active')) {
+            document.getElementById(cards[i]).classList.toggle('resume-active');
+            document.getElementById(cards[i]).classList.toggle('right-hidden'+i);
+            active_beginning = true;
+        }
     }
-
 
     proj.classList.toggle('right-hidden'+str);
     proj.classList.toggle('resume-active');
 
+    var active_end = proj.classList.contains('resume-active');
+
+
+    if(active_beginning !== active_end) {
+        for (var i = 0; i < content.length; ++i) {
+            content[i].classList.toggle('content-width-no-resume');
+            content[i].classList.toggle('content-width-resume');
+        }
+    }
 }
 
 function show_or_hide(content) {
