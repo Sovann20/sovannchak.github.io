@@ -84,6 +84,39 @@
         }
     });
 
+    resume_cardpull.addEventListener('click', function () {
+        if(!resume_cardpull.classList.contains('resume-active') &&
+            resume_cardpull.classList.contains('res-pullout')) {
+            resume_cardpull.classList.toggle('res-pullout');
+        }
+
+        proj('resume', '0', cards);
+    });
+
+    pull1.addEventListener('click', function () {
+        if(!pull1.classList.contains('resume-active') &&
+            pull1.classList.contains('card1-pullout')) {
+            pull1.classList.toggle('card1-pullout');
+        }
+        proj('proj-card1', '1', cards);
+    });
+
+    pull2.addEventListener('click', function () {
+        if(!pull2.classList.contains('resume-active') &&
+            pull2.classList.contains('card2-pullout')) {
+            pull2.classList.toggle('card2-pullout');
+        }
+        proj('proj-card2', '2', cards);
+    });
+
+    pull3.addEventListener('click', function () {
+        if(!pull3.classList.contains('resume-active') &&
+            pull3.classList.contains('card3-pullout')) {
+            pull3.classList.toggle('card3-pullout');
+        }
+        proj('proj-card3', '3', cards);
+    });
+
     x_resume.addEventListener('mousedown', function () {
         x_resume.style.color = 'var(--peach)';
     });

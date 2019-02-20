@@ -310,6 +310,25 @@ body {
     text-decoration-color: var(--peach);
 }
 
+.blu {
+    text-decoration-color: var(--blu) !important;
+}
+.white {
+    text-decoration-color: var(--off_white) !important;
+}
+
+.blu:hover {
+    color: var(--blu) !important;
+}
+
+.white:hover {
+    color: var(--off_white_f) !important;
+}
+
+.peach:hover {
+    color: var(--peach) !important;
+}
+
 .underline:hover {
     cursor: pointer;
 }
@@ -322,3 +341,14 @@ body {
     cursor: pointer;
     color: var(--off_white_f);
 }
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
