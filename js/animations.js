@@ -1,174 +1,80 @@
 //Introduction to site.
 (function () {
 
-    const b00 = document.getElementById('b00');
-    const b01 = document.getElementById('b01');
-    const b02 = document.getElementById('b02');
-    const b03 = document.getElementById('b03');
-    const b04 = document.getElementById('b04');
+    const buttons = [
+        document.getElementById('b00'),
+        document.getElementById('b01'),
+        document.getElementById('b02'),
+        document.getElementById('b03'),
+        document.getElementById('b04')
+    ];
 
-    const c00 = document.getElementById('c00');
-    const c01 = document.getElementById('c01');
-    const c02 = document.getElementById('c02');
-    const c03 = document.getElementById('c03');
-    const c04 = document.getElementById('c04');
+    const content = [
+        document.getElementById('c00'),
+        document.getElementById('c01'),
+        document.getElementById('c02'),
+        document.getElementById('c03'),
+        document.getElementById('c04')
+    ];
 
-    const resume_button = document.getElementById('show-resume');
+    const projectButtons = [
+        document.getElementById('show-resume'),
+        document.getElementById('proj-but1'),
+        document.getElementById('proj-but2'),
+        document.getElementById('proj-but3')
+    ];
 
-    const p01 = document.getElementById('proj-but1');
-    const p02 = document.getElementById('proj-but2');
-    const p03 = document.getElementById('proj-but3');
 
-    const cards = ["resume", "proj-card1", "proj-card2", "proj-card3"];
+    const cards = [
+        'resume',
+        'proj-card1',
+        'proj-card2',
+        'proj-card3'
+    ];
 
-    const resume_cardpull = document.getElementById('resume');
-    const pull1 = document.getElementById('proj-card1');
-    const pull2 = document.getElementById('proj-card2');
-    const pull3 = document.getElementById('proj-card3');
+    const pulls = [
+        document.getElementById('resume'),
+        document.getElementById('proj-card1'),
+        document.getElementById('proj-card2'),
+        document.getElementById('proj-card3')
+    ];
 
-    const x_resume = document.getElementById('x-button');
+    const cssClassActive = 'resume-active';
 
-    resume_cardpull.addEventListener('mouseover', function () {
-        if(!resume_cardpull.classList.contains('resume-active') &&
-            !resume_cardpull.classList.contains('res-pullout')) {
-            resume_cardpull.classList.toggle('res-pullout');
-        }
+    const cssPullout = [
+        'res-pullout',
+        'card1-pullout',
+        'card2-pullout',
+        'card3-pullout',
+    ];
+
+
+    const closeResume = document.getElementById('x-button');
+
+
+    for(var i = 0; i < pulls.length; ++i) {
+        addCardPullAnimations(pulls[i], cssClassActive, cssPullout[i], i, cards, cards[i], projectButtons[i]);
+    }
+
+    for(var i = 0; i < buttons.length; ++i) {
+        addButtonAnimations(projectButtons[i], buttons[i], content[i], i, cards, cards[i]);
+    }
+
+    closeResume.addEventListener('mousedown', function () {
+        closeResume.style.color = 'var(--peach)';
     });
 
-    resume_cardpull.addEventListener('mouseout', function () {
-        if(!resume_cardpull.classList.contains('resume-active') &&
-            resume_cardpull.classList.contains('res-pullout')) {
-            resume_cardpull.classList.toggle('res-pullout');
-        }
-    });
-
-    pull1.addEventListener('mouseout', function () {
-        if(!pull1.classList.contains('resume-active') &&
-            pull1.classList.contains('card1-pullout')) {
-            pull1.classList.toggle('card1-pullout');
-        }
-    });
-
-    pull1.addEventListener('mouseover', function () {
-        if(!pull1.classList.contains('resume-active') &&
-            !pull1.classList.contains('card1-pullout')) {
-            pull1.classList.toggle('card1-pullout');
-        }
-    });
-
-    pull2.addEventListener('mouseout', function () {
-        if(!pull2.classList.contains('resume-active') &&
-            pull2.classList.contains('card2-pullout')) {
-            pull2.classList.toggle('card2-pullout');
-        }
-    });
-
-    pull2.addEventListener('mouseover', function () {
-        if(!pull2.classList.contains('resume-active') &&
-            !pull2.classList.contains('card2-pullout')) {
-            pull2.classList.toggle('card2-pullout');
-        }
-    });
-
-    pull3.addEventListener('mouseover', function () {
-        if(!pull3.classList.contains('resume-active') &&
-            !pull3.classList.contains('card3-pullout')) {
-            pull3.classList.toggle('card3-pullout');
-        }
-    });
-
-    pull3.addEventListener('mouseout', function () {
-        if(!pull3.classList.contains('resume-active') &&
-            pull3.classList.contains('card3-pullout')) {
-            pull3.classList.toggle('card3-pullout');
-        }
-    });
-
-    resume_cardpull.addEventListener('click', function () {
-        if(!resume_cardpull.classList.contains('resume-active') &&
-            resume_cardpull.classList.contains('res-pullout')) {
-            resume_cardpull.classList.toggle('res-pullout');
-        }
-
-        proj('resume', '0', cards);
-    });
-
-    pull1.addEventListener('click', function () {
-        if(!pull1.classList.contains('resume-active') &&
-            pull1.classList.contains('card1-pullout')) {
-            pull1.classList.toggle('card1-pullout');
-        }
-        proj('proj-card1', '1', cards);
-    });
-
-    pull2.addEventListener('click', function () {
-        if(!pull2.classList.contains('resume-active') &&
-            pull2.classList.contains('card2-pullout')) {
-            pull2.classList.toggle('card2-pullout');
-        }
-        proj('proj-card2', '2', cards);
-    });
-
-    pull3.addEventListener('click', function () {
-        if(!pull3.classList.contains('resume-active') &&
-            pull3.classList.contains('card3-pullout')) {
-            pull3.classList.toggle('card3-pullout');
-        }
-        proj('proj-card3', '3', cards);
-    });
-
-    x_resume.addEventListener('mousedown', function () {
-        x_resume.style.color = 'var(--peach)';
-    });
-
-    x_resume.addEventListener('mouseup', function () {
-        x_resume.style.color = 'var(--off_white)';
+    closeResume.addEventListener('mouseup', function () {
+        closeResume.style.color = 'var(--off_white)';
     });
 
 
-    x_resume.addEventListener('click', function () {
-        proj('resume', '0', cards);
+    closeResume.addEventListener('click', function () {
+        oneCardToggle(cards[0], 0, cards);
     });
 
-    resume_button.addEventListener('click', function () {
-        proj('resume', '0', cards);
-    });
-
-    p01.addEventListener('click', function () {
-        proj('proj-card1', '1', cards);
-    });
-
-    p02.addEventListener('click', function () {
-        proj('proj-card2', '2', cards);
-    });
-
-    p03.addEventListener('click', function () {
-        proj('proj-card3', '3', cards);
-    });
-
-    b00.addEventListener('click', function () {
-        show_or_hide(c00);
-    });
-
-    b01.addEventListener('click', function () {
-        show_or_hide(c01);
-    });
-
-    b02.addEventListener('click', function () {
-        show_or_hide(c02);
-    });
-
-    b03.addEventListener('click', function () {
-        show_or_hide(c03);
-    });
-    
-    b04.addEventListener('click', function () {
-        show_or_hide(c04);
-    });
-
-
-    type_msg("Hello, I'm ", 'intro', function () {
-        type_msg("Sovann", 'name', function () {
+    typeMessage("Hello, I'm ", 'intro', function () {
+        typeMessage("Sovann", 'name', function () {
 
             const sovann = document.getElementById('name');
 
@@ -186,7 +92,7 @@
 
                 let fyi = document.getElementById('fyi');
 
-                show_or_hide(fyi);
+                showOrHide(fyi);
             });
 
         }, 1000);
@@ -194,28 +100,28 @@
 })();
 
 
-function proj(proj_, str, cards) {
+function oneCardToggle(project, str, cards) {
 
-    const proj = document.getElementById(proj_);
+    const proj = document.getElementById(project);
     const content = document.getElementsByClassName('content');
-    var active_beginning = proj.classList.contains('resume-active');
+    var activeBeginning = proj.classList.contains('resume-active');
 
     for( var i = 0; i < cards.length; ++i ) {
 
-        if(cards[i] !== proj_ && document.getElementById(cards[i]).classList.contains('resume-active')) {
+        if(cards[i] !== project && document.getElementById(cards[i]).classList.contains('resume-active')) {
             document.getElementById(cards[i]).classList.toggle('resume-active');
             document.getElementById(cards[i]).classList.toggle('right-hidden'+i);
-            active_beginning = true;
+            activeBeginning = true;
         }
     }
 
     proj.classList.toggle('right-hidden'+str);
     proj.classList.toggle('resume-active');
 
-    var active_end = proj.classList.contains('resume-active');
+    var activeEnd = proj.classList.contains('resume-active');
 
 
-    if(active_beginning !== active_end) {
+    if(activeBeginning !== activeEnd) {
         for (var i = 0; i < content.length; ++i) {
             content[i].classList.toggle('content-width-no-resume');
             content[i].classList.toggle('content-width-resume');
@@ -223,7 +129,7 @@ function proj(proj_, str, cards) {
     }
 }
 
-function show_or_hide(content) {
+function showOrHide(content) {
     if (content.style.display === 'none') {
         content.style.display = 'block';
     }
@@ -232,13 +138,13 @@ function show_or_hide(content) {
     }
 }
 
-async function type_msg(string, ele, func, x) {
+async function typeMessage(string, ele, func, x) {
 
     for (let i = 0; i < string.length; ++i) {
-        append_char(string[i], i, ele);
+        appendChar(string[i], i, ele);
     }
 
-    await resolve_after_x(x);
+    await resolveAfterX(x);
 
     if (ele === 'intro') {
         document.getElementById(ele).innerHTML += "<span id=\"name\" style=\"text-decoration: underline;\n" +
@@ -251,17 +157,60 @@ async function type_msg(string, ele, func, x) {
     }
 }
 
-function append_char(char, i, ele) {
+function appendChar(char, i, ele) {
     setTimeout(function () {
         document.getElementById(ele).innerHTML += char;
     }, 60 * i);
 }
 
 
-function resolve_after_x(x) {
+function resolveAfterX(x) {
     return new Promise(resolve => {
         setTimeout(() => {
             resolve('resolved');
         }, x);
     });
 }
+
+function addCardPullAnimations(pullCard, cssClassActive, cssPullout, index, cards, id, projectButton) {
+
+    //Mouse over animation
+    pullCard.addEventListener('mouseover', function () {
+        if(!pullCard.classList.contains(cssClassActive) &&
+            !pullCard.classList.contains(cssPullout)) {
+            pullCard.classList.toggle(cssPullout);
+        }
+    });
+
+    //Mouse out animation
+    pullCard.addEventListener('mouseout', function () {
+        if(!pullCard.classList.contains(cssClassActive) &&
+            pullCard.classList.contains(cssPullout)) {
+            pullCard.classList.toggle(cssPullout);
+        }
+    });
+
+    //Click animations
+    pullCard.addEventListener('click', function () {
+        if(!pullCard.classList.contains(cssClassActive) &&
+            pullCard.classList.contains(cssPullout)) {
+            pullCard.classList.toggle(cssPullout);
+        }
+
+        oneCardToggle(id, index, cards);
+    });
+
+    //Project buttons
+    projectButton.addEventListener('click', function () {
+        oneCardToggle(id, index, cards);
+    });
+}
+
+
+function addButtonAnimations(projectButton, button, content) {
+    button.addEventListener('click', function () {
+        showOrHide(content)
+    });
+}
+
+
