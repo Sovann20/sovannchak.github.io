@@ -49,16 +49,8 @@
     ];
 
 
+
     const closeResume = document.getElementById('x-button');
-
-
-    for(var i = 0; i < pulls.length; ++i) {
-        addCardPullAnimations(pulls[i], cssClassActive, cssPullout[i], i, cards, cards[i], projectButtons[i]);
-    }
-
-    for(var i = 0; i < buttons.length; ++i) {
-        addButtonAnimations(projectButtons[i], buttons[i], content[i], i, cards, cards[i]);
-    }
 
     closeResume.addEventListener('mousedown', function () {
         closeResume.style.color = 'var(--peach)';
@@ -68,10 +60,19 @@
         closeResume.style.color = 'var(--off_white)';
     });
 
-
     closeResume.addEventListener('click', function () {
         oneCardToggle(cards[0], 0, cards);
+        console.log("Clicked!!");
     });
+
+    for(var i = 0; i < pulls.length; ++i) {
+        addCardPullAnimations(pulls[i], cssClassActive, cssPullout[i], i, cards, cards[i], projectButtons[i]);
+    }
+
+    for(var i = 0; i < buttons.length; ++i) {
+        addButtonAnimations(projectButtons[i], buttons[i], content[i], i, cards, cards[i]);
+    }
+
 
     typeMessage("Hello, I'm ", 'intro', function () {
         typeMessage("Sovann", 'name', function () {
@@ -130,7 +131,8 @@ function oneCardToggle(project, str, cards) {
 }
 
 function showOrHide(content) {
-    if (content.style.display === 'none') {
+    console.log("clicked: "+content.style.display);
+    if (content.style.display === 'none' || content.style.display === "") {
         content.style.display = 'block';
     }
     else {
